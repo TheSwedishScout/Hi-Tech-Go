@@ -2,26 +2,26 @@
       var draws = 0; //en variabel som sparar värdet på hur många gånger som positionen hämtats
       var myCirkel;  // en variabel att spara den utritade positionen för att nolla den gamla innan en ny skapas
       
-      var intressePungter = {
-        akademin: {
+      var intressePungter = [
+        {
           center: {lat: 57.785142, lng: 14.157818},
           //57.785142, 14.157818
           storlek: 100,
-          game: akademin()
+          game: function () {akademin()}
         },
-        systemet: {
+        {
           center: {lat: 57.780455, lng: 14.172033},
           //57.780455, 14.172033
           storlek: 100,
-          game: systemet()
+          game: function (){systemet()}
         },
-        bibliotek: {
+        {
           center: {lat: 57.778703, lng: 14.162645},
           storlek: 100,
-          game: biblan();
+          game: function (){biblan()}
 
         },
-      };
+      ];
 function distans(myPos, toPos){
   /*
   kod för att kalkulera distansen mellan 2 olika gps kordinater är hämtat från
@@ -63,14 +63,18 @@ function drawLocation(position){ // draw your location o the map and runs the di
     center: pos,
     radius: 10
   });
-  var maxDistansToEvent = 20;  
-  if(distans(pos, intressePungter.akademin.center) <= maxDistansToEvent){
-    intressePungter.akademin.game;//kör eventet som ska ske vid aka 
-  }
-console.log(distans(pos, intressePungter.akademin.center));
-console.log(distans(pos, intressePungter.systemet.center));
-console.log(distans(pos, intressePungter.bibliotek.center));
-console.log(draws)
+
+  var maxDistansToEvent = 200; 
+  for (var i = 0; i <intressePungter.length; i ++ ) {
+    
+    if(distans(pos, intressePungter[i].center) < maxDistansToEvent){
+      intressePungter[i].game;
+    }
+    console.log(distans(pos, intressePungter[i].center));
+      
+    } 
+  
+  console.log(draws);
 
 draws++ // ökar antalet draws som har gjorts
 }
