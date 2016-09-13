@@ -1,0 +1,3 @@
+function akademin(){
+	debugger;
+}
