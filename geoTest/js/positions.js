@@ -68,7 +68,7 @@ function drawLocation(position){ // draw your location o the map and runs the di
   for (var i = 0; i <intressePungter.length; i ++ ) {
     
     if(distans(pos, intressePungter[i].center) < maxDistansToEvent){
-      intressePungter[i].game;
+      intressePungter[i].game();
     }
     console.log(distans(pos, intressePungter[i].center));
       
