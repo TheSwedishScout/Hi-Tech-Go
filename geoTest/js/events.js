@@ -4,3 +4,6 @@ function akademin(){
 function biblan(){
 	debugger;
 }
+function systemet(){
+	debugger;
+}
