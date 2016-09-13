@@ -4,23 +4,26 @@
       
       var intressePungter = [
         {
+          name: "akademin",
           center: {lat: 57.785142, lng: 14.157818},
           //57.785142, 14.157818
           storlek: 100,
           game: function () {akademin()}
         },
         {
+          name: "systemet",
           center: {lat: 57.780455, lng: 14.172033},
           //57.780455, 14.172033
           storlek: 100,
           game: function (){systemet()}
         },
         {
+          name: "biblioteket",
           center: {lat: 57.778703, lng: 14.162645},
           storlek: 100,
           game: function (){biblan()}
 
-        },
+        }
       ];
 function distans(myPos, toPos){
   /*
@@ -70,7 +73,7 @@ function drawLocation(position){ // draw your location o the map and runs the di
     if(distans(pos, intressePungter[i].center) < maxDistansToEvent){
       intressePungter[i].game();
     }
-    console.log(distans(pos, intressePungter[i].center));
+      console.log(intressePungter[i].name + " " + distans(pos, intressePungter[i].center));
       
     } 
   
