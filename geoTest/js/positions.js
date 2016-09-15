@@ -124,7 +124,7 @@ function initMap() {
       lat: position.coords.latitude,
       lng: position.coords.longitude
     };
-    var zoom = 14;
+    var zoom = 19;
 
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: zoom,

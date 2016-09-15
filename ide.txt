@@ -1,0 +1,12 @@
+Skappa en app som man får fram sin position och om man når ett område så ska man göra en uppgift. 
+tankar på uppgifter:
+* vid systemet: Drick en öl, ta telefonen och låsas som det är en ölburk
+* vid skolan: start läs ignom uppdragen osv
+* vid akademin: dansa, skaka telifonen
+
+
+GAMES
+* sorting beer cans - drag n drop, music, animation keyframe
+* maze - cnavas, Device orientation (JS)
+* caps, fling it
+* 
