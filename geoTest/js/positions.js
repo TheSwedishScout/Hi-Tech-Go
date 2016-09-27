@@ -1,7 +1,14 @@
+/*screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
+
+if (screen.lockOrientationUniversal("portrait")) {
+  // orientation was locked
+} else {
+  // orientation lock failed
+}*/
       var map; //skapa en variable att spara kartan i, skaar den utanför då den behövs i flera olika funktioner
       var draws = 0; //en variabel som sparar värdet på hur många gånger som positionen hämtats
       var myCirkel;  // en variabel att spara den utritade positionen för att nolla den gamla innan en ny skapas
-      
+      var wpid;
       var intressePungter = [
         {
           name: "akademin",
@@ -21,7 +28,7 @@
           name: "biblioteket",
           center: {lat: 57.778703, lng: 14.162645},
           storlek: 100,
-          game: function (){biblan()}
+          game: function (){ biblan()}
 
         }
       ];
@@ -67,15 +74,19 @@ function drawLocation(position){ // draw your location o the map and runs the di
     radius: 10
   });
 
-  var maxDistansToEvent = 200; 
+  var maxDistansToEvent = 160; 
+  var box = document.getElementById("box");
   for (var i = 0; i <intressePungter.length; i ++ ) {
-    
     if(distans(pos, intressePungter[i].center) < maxDistansToEvent){
+      box.style.background = "#F00"
+      box.innerText = intressePungter[i].name;
+      navigator.geolocation.clearWatch(wpid);
       intressePungter[i].game();
+      
     }
       console.log(intressePungter[i].name + " " + distans(pos, intressePungter[i].center));
-      
-    } 
+      box.innerText = intressePungter[2].name + " " + distans(pos, intressePungter[2].center);
+  } 
   
   console.log(draws);
 
@@ -102,13 +113,17 @@ function myLocation(){ // whit sucsessfully got location
       maximumAge        : 30000
     };
     // get position whit parameters above
-    var wpid=navigator.geolocation.watchPosition(drawLocation,geo_error,geo_options);
+    wpid=navigator.geolocation.watchPosition(drawLocation,geo_error,geo_options);
       
   } else {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
 
+}
+
+function init() {
+  document.addEventListener("DOMContentLoaded", initMap)
 }
 
 function initMap() {
@@ -124,18 +139,18 @@ function initMap() {
       lat: position.coords.latitude,
       lng: position.coords.longitude
     };
-    var zoom = 19;
+    var zoom = 18;
 
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: zoom,
       center: pos, // din start position var den fick positionen från första hemtnigen
       mapTypeId: 'roadmap',
-      disableDefaultUI: true,
-      draggable: false,
+      //disableDefaultUI: true,
+      //draggable: false,
       scrollwheel: false,
       panControl: false,
-      maxZoom: zoom,
-      minZoom: zoom,
+      //maxZoom: zoom,
+      //minZoom: zoom,
 
       styles: [{"featureType": "all","elementType": "geometry","stylers": [{"color": "#f6fb00"}]},{"featureType": "all","elementType": "labels.text","stylers": [{"visibility": "off"}]},{"featureType": "all","elementType": "labels.text.fill","stylers": [    {"gamma": 0.01    },    {"lightness": 20    }]},{"featureType": "all","elementType": "labels.text.stroke","stylers": [    {"saturation": -31    },    {"lightness": -33    },    {"weight": 2    },    {"gamma": 0.8    }]},{"featureType": "all","elementType": "labels.icon","stylers": [    {"visibility": "off"    }]},{"featureType": "landscape","elementType": "geometry","stylers": [    {"lightness": 30    },    {"saturation": 30    },    {"color": "#000000"    }]},{"featureType": "poi","elementType": "geometry","stylers": [    {"saturation": 20    }]},{"featureType": "poi","elementType": "labels.text","stylers": [    {"visibility": "off"    }]},{"featureType": "poi.park","elementType": "geometry","stylers": [    {"lightness": 20    },    {"saturation": -20    }]},{"featureType": "road","elementType": "geometry","stylers": [    {"lightness": 10    },    {"saturation": -30    }]},{"featureType": "road","elementType": "geometry.stroke","stylers": [    {"saturation": 25    },    {"lightness": 25    }]},{"featureType": "road","elementType": "labels.text","stylers": [    {"visibility": "off"    }]},{"featureType": "water","elementType": "all","stylers": [    {"lightness": -20    }]}]
     });
@@ -158,6 +173,16 @@ function initMap() {
       });
     }
     myLocation();
+    //document.addEventListener("DOMContentLoaded", myLocation);
   }
         
 }
+
+/*---------------------------------------------------------------||
+||---------------------------------------------------------------||
+||-----------------------------GAMES-----------------------------||
+||---------------------------------------------------------------||
+||---------------------------------------------------------------||
+||---------------------------------------------------------------*/
+
+

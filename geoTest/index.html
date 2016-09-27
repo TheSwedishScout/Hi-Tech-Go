@@ -13,12 +13,21 @@
       }
       #map {
         height: 100%;
+        z-index: 1;
+      }
+      canvas{
+        position: absolute;
+        z-index: 3;
+        left: 0;
+        top:0;
       }
     </style>
   </head>
   <body>
     <!--<button id="get_location">start</button>-->
     <div id="map"></div>
+    <div id="box" style="height:200px; background: #777;">hej</div>
+    
     <script src="js/events.js"></script>
     <script src="js/positions.js"></script>
     <script async defer
