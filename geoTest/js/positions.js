@@ -15,6 +15,7 @@ if (screen.lockOrientationUniversal("portrait")) {
           center: {lat: 57.785142, lng: 14.157818},
           //57.785142, 14.157818
           storlek: 100,
+          played: false,
           game: function () {akademin()}
         },
         {
@@ -22,13 +23,15 @@ if (screen.lockOrientationUniversal("portrait")) {
           center: {lat: 57.780455, lng: 14.172033},
           //57.780455, 14.172033
           storlek: 100,
+          played: false,
           game: function (){systemet()}
         },
         {
           name: "biblioteket",
           center: {lat: 57.778703, lng: 14.162645},
           storlek: 100,
-          game: function (){ biblan()}
+          played: false,
+          game: function (id){ biblan(id)}
 
         }
       ];
@@ -77,11 +80,11 @@ function drawLocation(position){ // draw your location o the map and runs the di
   var maxDistansToEvent = 160; 
   var box = document.getElementById("box");
   for (var i = 0; i <intressePungter.length; i ++ ) {
-    if(distans(pos, intressePungter[i].center) < maxDistansToEvent){
+    if(distans(pos, intressePungter[i].center) < maxDistansToEvent && intressePungter[i].played == false){
       box.style.background = "#F00"
       box.innerText = intressePungter[i].name;
       navigator.geolocation.clearWatch(wpid);
-      intressePungter[i].game();
+      intressePungter[i].game(i);
       
     }
       console.log(intressePungter[i].name + " " + distans(pos, intressePungter[i].center));

@@ -1,9 +1,9 @@
-"use strict";
+
 function akademin() {
     debugger;
 }
 
-function biblan() {
+function biblan(id) {
     function getWidth() {
         if (self.innerHeight) {
             return self.innerWidth;
@@ -30,8 +30,16 @@ function biblan() {
         }
     }
 
-    var ctx, WIDTH, HEIGHT, pi = Math.PI;
-
+    var ctx, WIDTH, HEIGHT, canvas;
+    
+    function finnish(){
+        console.log("GOAL!");
+        intressePungter[id].played = true;
+        //Close canvas
+        canvas.parentNode.removeChild(canvas);
+        myLocation();
+    }
+    
     if (getWidth() < getHeight()) {
         WIDTH = getWidth();
         HEIGHT = getWidth();
@@ -195,12 +203,14 @@ function biblan() {
 
     var good_point = {
         /*the goal or a point to go trow*/
-        x: WIDTH * 0.9,
-        Y: HEIGHT * 0.9,
-        width: WIDTH * 0.1,
-        height: HEIGHT * 0.1,
+        x: WIDTH*0.9,
+        y: HEIGHT*0.9,
+        width: WIDTH*0.1,
+        height: HEIGHT*0.1,
 
         draw: function() {
+            ctx.fillStyle = "#0F0";
+            //ctx.fillRect(WIDTH-20, HEIGHT-20, 20, 20);
             ctx.fillRect(this.x, this.y, this.width, this.height);
 
         }
@@ -257,6 +267,14 @@ function biblan() {
                     console.log(this.speedMult);*/
 
                 }
+                if(this.x < good_point.x + good_point.width &&
+                   this.x + this.side > good_point.x &&
+                   this.y < good_point.y + good_point.height &&
+                   this.side + this.y > good_point.y){
+                    //good_point.x < this.x
+                    finnish();
+                    
+                }
                 //box detection prioritize the longer side
                 for (var i = 0; i < walls.length; i++) {
                     //trimma lite på siderna för att få sid kolitioner
@@ -270,7 +288,7 @@ function biblan() {
 
                             this.vel.y = 0;
                             this.y = walls[i].y - walls[i].height;
-                            console.log("top")
+                            //console.log("top")
 
                         }
 
@@ -278,7 +296,7 @@ function biblan() {
                         if ((this.y + this.side > walls[i].y) && (this.y < walls[i].y + walls[i].height) && (this.x + this.side > walls[i].x) && (this.x < (walls[i].x + walls[i].width))) {
                             this.vel.y = 0;
                             this.y = walls[i].y + walls[i].height;
-                            console.log("bottom");
+                            //console.log("bottom");
                         }
                     } else {
 
@@ -289,7 +307,7 @@ function biblan() {
 
                             this.vel.x = 0;
                             this.x = walls[i].x + walls[i].width;
-                            console.log("right");
+                            //console.log("right");
                         }
 
                         if ((this.x + this.side > walls[i].x) && (this.x + this.side < walls[i].x + walls[i].width) && this.y < walls[i].y + walls[i].height && (this.y + this.side > walls[i].y)) {
@@ -297,20 +315,11 @@ function biblan() {
 
                             this.vel.x = 0;
                             this.x = walls[i].x - this.side;
-                            console.log("left");
+                            //console.log("left");
                         }
                     }
                 }
-                //ball bottom collided with wall1 top
-                if ((this.y > good_point.y - good_point.height) && (this.y < good_point.y) && (this.x + this.side > good_point.x) && (this.x < (good_point.x + good_point.width))) {
-                    //  && (this.x + this.side > wall1.x) && (this.x < (wall1.x + wall1.width))
-                    //&& (this.y+ this.side < wall1.y)
-                    // exit maze
-                    myLocation();
-                    console.log("Exit")
-
-                }
-
+                
 
 
             },
@@ -360,12 +369,14 @@ function biblan() {
         //Draw ball
         ctx.save();
         ball.draw();
-
+        good_point.draw();
+        
         //draw walls
+        ctx.fillStyle = "#73481D";
         for (var i = 0; i < walls.length; i++) {
             walls[i].draw();
         }
-        good_point.draw();
+        
         ctx.font = "120px";
         ctx.textAlign = "center";
         //ctx.fillText(Math.round(ball.x), WIDTH/2, (HEIGHT)/2);
@@ -377,7 +388,7 @@ function biblan() {
 
 
     function main() {
-        var canvas = document.createElement("canvas");
+        canvas = document.createElement("canvas");
         canvas.width = WIDTH;
         canvas.height = HEIGHT;
         ctx = canvas.getContext("2d");
