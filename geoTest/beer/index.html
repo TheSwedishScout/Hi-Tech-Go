@@ -11,37 +11,8 @@
 	<script type="text/javascript" src="js/ios-drag-drop.js"></script>
 </head>
 <body>
-	<section>
-		<h1>Match the Bottle</h1>
-		<p>drag the logo to the matching bottle</p>
-	</section>
-
-	<section class="group">
-		<div id="logos">
-			<div>
-				<img id="l_budweiser" data-id="match1" class="logo" src="images/budweiserlogo.png" alt="Budweiser Logo" draggable="true" ondragstart="drag(event)">
-			</div>
-			<div>
-				<img id="l_heineken" data-id="match2" class="logo" src="images/heinekenlogo.png" alt="Heineken Logo" draggable="true" ondragstart="drag(event)">
-			</div>
-			<div>
-				<img id="l_staropramen" data-id="match3" class="logo" src="images/staropramenlogo.png" alt="Staropramen Logo" draggable="true" ondragstart="drag(event)">
-			</div>
-		</div>
-
-		<div id="bottles">
-			<div>
-				<img id="b_heineken" data-id="match2" class="bottle" src="images/heinekenbottle.png" alt="Heineken Bottle" ondrop="drop(event)" ondragover="allowDrop(event)">
-			</div>
-			<div>
-				<img id="b_staropramen" data-id="match3" class="bottle" src="images/staropramenbottle.png" alt="Staropramen Bottle" ondrop="drop(event)" ondragover="allowDrop(event)">
-			</div>
-			<div>
-				<img id="b_budweiser" data-id="match1" class="bottle" src="images/budweiserbottle.png" alt="Budweiser Bottle" ondrop="drop(event)" ondragover="allowDrop(event)">
-			</div>
-
-		</div>
-	</section>
+	
+	<div id="game"></div>
 
 </body>
 </html>

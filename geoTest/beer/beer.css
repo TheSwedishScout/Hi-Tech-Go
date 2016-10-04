@@ -19,14 +19,16 @@ section p {
 	font-size: 6vw;
 	text-align: center;
 }
-
+ul{
+	list-style: none;
+}
 #logos {
 	float: left;
 	width: 50%;
 	height: 100vh-30px;
 }
 
-#logos div {
+#logos li {
 	height: 28vh;
 	
 }
@@ -37,7 +39,7 @@ section p {
 	height: 100vh-30px;
 }
 
-#bottles div {
+#bottles li {
 	height: 28vh;
 	
 }
