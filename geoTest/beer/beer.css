@@ -1,0 +1,60 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+body {
+	background-color: beige;
+}
+
+section h1 {
+	font-size: 10vw;
+	text-transform: uppercase;
+	text-align: center;
+
+}
+
+section p {
+	font-size: 6vw;
+	text-align: center;
+}
+
+#logos {
+	float: left;
+	width: 50%;
+	height: 100vh-30px;
+}
+
+#logos div {
+	height: 28vh;
+	
+}
+
+#bottles {
+	float: right;
+	width: 50%;
+	height: 100vh-30px;
+}
+
+#bottles div {
+	height: 28vh;
+	
+}
+
+.group:after {
+	clear: both;
+}
+
+.logo {
+	height: 170px;
+    margin: 5px 30px;
+}
+
+.bottle {
+	height: 170px;
+    margin: 5px 30px;
+
+}
+
+
