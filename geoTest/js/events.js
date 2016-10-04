@@ -1,4 +1,12 @@
-
+/*---------------------------------------
+|---_____----------__--__-______--_____--|
+|--/ ____|---/\---|  \/  |  ____|/ ____|-|
+|-| |-------/  \--| \  / | |__  | (___---|
+|-| |-|_ |-/ /\ \-| |\/| |  __|--\___ \--|
+|-| |__| |/ ____ \| |--| | |____-____) |-|
+|--\_____/_/----\_\_|--|_|______|_____/--|
+----------------------------------------*/
+var game = document.getElementById('game');
 function akademin() {
     debugger;
 }
@@ -414,7 +422,7 @@ function biblan(id) {
         canvas.width = WIDTH;
         canvas.height = HEIGHT;
         ctx = canvas.getContext("2d");
-        document.body.appendChild(canvas);
+        game.appendChild(canvas);
 
 
         //init();
@@ -432,6 +440,108 @@ function biblan(id) {
     main();
 }
 
-function systemet() {
+function systemet(id) {
     debugger;
+    var correctBottles = 0;
+    var bottle;
+    var logos  =[
+        {
+            id:"budweiser",
+            logoSrc: "images/budweiserlogo.png",
+            bottleSrc: "images/budweiserbottle.png"
+        },
+        {
+            id:"heineken",
+            logoSrc: "images/heinekenlogo.png",
+            bottleSrc: "images/heinekenbottle.png"
+        },
+        {
+            id:"staropramen",
+            logoSrc: "images/staropramenlogo.png",
+            bottleSrc: "images/staropramenbottle.png"
+        }
+    ];
+    function init() {
+        // body...
+        
+        bottle = document.createElement("div");
+        bottle.id = "dragndrop";
+        //Logos
+        logosUl = document.createElement("ul");
+        logosUl.id = "logos";
+        for (var i = logos.length - 1; i >= 0; i--) {
+            logosLi = document.createElement("li");
+            logosImg = document.createElement("img");
+            logosImg.src = logos[i].logoSrc;
+            logosImg.id = "b_"+logos[i].id;
+            logosImg.dataset.id=logos[i].id;
+            logosImg.className = "logo";
+            logosImg.draggable="true";
+            logosImg.alt = logos[i].id + "Logo";
+            logosImg.addEventListener("dragstart",drag)
+
+            logosLi.appendChild(logosImg);
+            logosUl.appendChild(logosLi);
+        }
+        bottle.appendChild(logosUl);
+        //bottels
+        console.log(logos);
+        logos.reverse();
+        console.log(logos);
+        bottleUl = document.createElement("ul");
+        bottleUl.id = "bottles";
+        for (var i = logos.length - 1; i >= 0; i--) {
+            bottleLi = document.createElement("li");
+            bottleImg = document.createElement("img");
+            bottleImg.src = logos[i].bottleSrc;
+            bottleImg.id = "b_"+logos[i].id;
+            bottleImg.dataset.id=logos[i].id;
+            bottleImg.className = "bottle";
+            
+            bottleImg.alt = logos[i].id + "Bottle";
+            bottleImg.addEventListener("dragover",allowDrop)
+            bottleImg.addEventListener("drop",drop)
+
+            bottleLi.appendChild(bottleImg);
+            bottleUl.appendChild(bottleLi);
+        }
+        bottle.appendChild(bottleUl);
+        game.appendChild(bottle);
+    }
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        console.log("hej")
+        ev.dataTransfer.setData("text", ev.target.id);
+        ev.dataTransfer.setData("data-id", ev.target.getAttribute("data-id"));
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var logo = ev.dataTransfer.getData("data-id");
+        var bottle = ev.target.getAttribute("data-id");
+        if (logo == bottle) {
+          ev.target.appendChild(document.getElementById(data));
+          correctBottles++;
+          if (correctBottles == logos.length) {
+            finnish();
+          }
+        } else {
+          alert("Wrong bottle");
+        }
+        
+    }
+    function finnish(){
+        
+        console.log("GOAL!");
+        intressePungter[id].played = true;
+        
+        bottle.parentNode.removeChild(bottle);
+        myLocation();
+        
+    }
+    init();
 }

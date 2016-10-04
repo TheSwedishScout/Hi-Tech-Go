@@ -4,28 +4,19 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Circles</title>
+    <!-- Code from: https://github.com/timruffles/ios-html5-drag-drop-shim -->
+    <script type="text/javascript" src="js/ios-drag-drop.js"></script>
     <!--http://www.movable-type.co.uk/scripts/latlong.html-->
+    
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-        z-index: 1;
-      }
-      canvas{
-        position: absolute;
-        z-index: 3;
-        left: 0;
-        top:0;
-      }
+      
     </style>
   </head>
   <body>
     <!--<button id="get_location">start</button>-->
     <div id="map"></div>
+    <div id="game"></div>
     <div id="box" style="height:200px; background: #777;">hej</div>
     
     <script src="js/events.js"></script>

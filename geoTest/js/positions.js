@@ -16,7 +16,7 @@ if (screen.lockOrientationUniversal("portrait")) {
           //57.785142, 14.157818
           storlek: 100,
           played: false,
-          game: function () {akademin()}
+          game: function (id) {akademin(id)}
         },
         {
           name: "systemet",
@@ -24,7 +24,7 @@ if (screen.lockOrientationUniversal("portrait")) {
           //57.780455, 14.172033
           storlek: 100,
           played: false,
-          game: function (){systemet()}
+          game: function (id){systemet(id)}
         },
         {
           name: "biblioteket",
@@ -37,8 +37,9 @@ if (screen.lockOrientationUniversal("portrait")) {
       ];
 function distans(myPos, toPos){
   /*
-  kod för att kalkulera distansen mellan 2 olika gps kordinater är hämtat från
-  http://www.movable-type.co.uk/scripts/latlong.html
+  code to calculate the distance betwene 2 gps cordinates is fetched from
+  http://www.movable-type.co.uk/scripts/latlong.html 
+  and simplified to make me figure out whats hapening
   */
   lng1 = myPos.lng;
   lat1 = myPos.lat;
@@ -155,11 +156,13 @@ function initMap() {
       //maxZoom: zoom,
       //minZoom: zoom,
 
+
+      // style generated on https://snazzymaps.com/
       styles: [{"featureType": "all","elementType": "geometry","stylers": [{"color": "#f6fb00"}]},{"featureType": "all","elementType": "labels.text","stylers": [{"visibility": "off"}]},{"featureType": "all","elementType": "labels.text.fill","stylers": [    {"gamma": 0.01    },    {"lightness": 20    }]},{"featureType": "all","elementType": "labels.text.stroke","stylers": [    {"saturation": -31    },    {"lightness": -33    },    {"weight": 2    },    {"gamma": 0.8    }]},{"featureType": "all","elementType": "labels.icon","stylers": [    {"visibility": "off"    }]},{"featureType": "landscape","elementType": "geometry","stylers": [    {"lightness": 30    },    {"saturation": 30    },    {"color": "#000000"    }]},{"featureType": "poi","elementType": "geometry","stylers": [    {"saturation": 20    }]},{"featureType": "poi","elementType": "labels.text","stylers": [    {"visibility": "off"    }]},{"featureType": "poi.park","elementType": "geometry","stylers": [    {"lightness": 20    },    {"saturation": -20    }]},{"featureType": "road","elementType": "geometry","stylers": [    {"lightness": 10    },    {"saturation": -30    }]},{"featureType": "road","elementType": "geometry.stroke","stylers": [    {"saturation": 25    },    {"lightness": 25    }]},{"featureType": "road","elementType": "labels.text","stylers": [    {"visibility": "off"    }]},{"featureType": "water","elementType": "all","stylers": [    {"lightness": -20    }]}]
     });
-    map.setTilt(45);
+    
 
-    function odt(id) {
+    function clickOnCercel(id) {
              debugger
          }; 
 
@@ -180,7 +183,7 @@ function initMap() {
     (function() {
       cityCircle.addListener('click', function() {
          
-         odt(location);
+         clickOnCercel(location);
       });
       
       }
@@ -192,11 +195,6 @@ function initMap() {
         
 }
 
-/*---------------------------------------------------------------||
-||---------------------------------------------------------------||
-||-----------------------------GAMES-----------------------------||
-||---------------------------------------------------------------||
-||---------------------------------------------------------------||
-||---------------------------------------------------------------*/
+
 
 

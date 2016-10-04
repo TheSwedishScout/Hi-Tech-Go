@@ -1,6 +1,66 @@
-#bottle {
-    width: 50px;
-    height: 200px;
-    padding: 10px;
-    border: 1px solid #aaaaaa;
+*{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+#dragndrop{
+	overflow: hidden;
+	background-color: beige;
+}
+#dragndrop ul{
+	list-style: none;
+}
+#dragndrop #logos {
+	float: left;
+	width: 50%;
+	height: 100vh-30px;
+}
+
+#dragndrop #logos li {
+	height: 28vh;
+	
+}
+
+#dragndrop #bottles {
+	float: right;
+	width: 50%;
+	height: 100vh-30px;
+}
+
+#dragndrop #bottles li {
+	height: 28vh;
+	
+}
+
+#dragndrop .group:after {
+	clear: both;
+}
+
+#dragndrop .logo {
+	height: 170px;
+    margin: 5px 30px;
+}
+
+#dragndrop .bottle {
+	height: 170px;
+    margin: 5px 30px;
+
+}
+
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+#map {
+	height: 100%;
+	z-index: 1;
+}
+#game{
+	position: absolute;
+	z-index: 3;
+	left: 0;
+	top:0;
 }
