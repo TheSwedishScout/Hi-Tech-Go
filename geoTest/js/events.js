@@ -30,15 +30,8 @@ function biblan(id) {
         }
     }
 
-    var ctx, WIDTH, HEIGHT, canvas;
-    
-    function finnish(){
-        console.log("GOAL!");
-        intressePungter[id].played = true;
-        //Close canvas
-        canvas.parentNode.removeChild(canvas);
-        myLocation();
-    }
+    var ctx, WIDTH, HEIGHT, canvas, compleated;
+    compleated = false;
     
     if (getWidth() < getHeight()) {
         WIDTH = getWidth();
@@ -47,6 +40,27 @@ function biblan(id) {
         WIDTH = getHeight();
         HEIGHT = getHeight();
     }
+    
+    function finnish(){
+        
+        console.log("GOAL!");
+        intressePungter[id].played = true;
+        //Close canvas
+        ctx.fillStyle ="#FFF";
+        ctx.fillRect(0,0,WIDTH,HEIGHT);
+        ctx.textAlign = "center";
+        ctx.font = "48px serif";
+        ctx.fillStyle = "yellow"
+        ctx.fillText("Congratulation!", WIDTH/2, WIDTH/2);
+        canvas.addEventListener("click", function(){
+            canvas.parentNode.removeChild(canvas);
+            myLocation();
+        })
+        //alert("help!");
+        //canvas.parentNode.removeChild(canvas);
+        //myLocation();
+    }
+    
     /*----------------------------------------------------||----||--------\\
     ||----------------------------------------------------||----||--------||
     ||-----------------------Seting upp the walls---------||____||--------||
@@ -200,7 +214,8 @@ function biblan(id) {
             }
         }
     ];
-
+    var imgGoal = new Image();
+    imgGoal.src = "images/book.png";
     var good_point = {
         /*the goal or a point to go trow*/
         x: WIDTH*0.9,
@@ -211,7 +226,8 @@ function biblan(id) {
         draw: function() {
             ctx.fillStyle = "#0F0";
             //ctx.fillRect(WIDTH-20, HEIGHT-20, 20, 20);
-            ctx.fillRect(this.x, this.y, this.width, this.height);
+            
+            ctx.drawImage(imgGoal, this.x, this.y, this.width, this.height);
 
         }
     };
@@ -221,7 +237,8 @@ function biblan(id) {
     ||-----------------------Seting upp the ball-----------|        |----||
     ||-----------------------------------------------------\        /----||
     \\------------------------------------------------------\______/-----*/
-
+    var img = new Image();
+    img.src = "images/hat.png";
     var ball = {
             x: 1,
             y: 1,
@@ -272,7 +289,8 @@ function biblan(id) {
                    this.y < good_point.y + good_point.height &&
                    this.side + this.y > good_point.y){
                     //good_point.x < this.x
-                    finnish();
+                    compleated = true;
+                    
                     
                 }
                 //box detection prioritize the longer side
@@ -325,11 +343,15 @@ function biblan(id) {
             },
             draw: function() {
                 //drwing the ball
-
-                ctx.beginPath();
+                //var img = new Image();
+                
+                ctx.drawImage(img, this.x, this.y, this.side, this.side);
+                
+                /*ctx.beginPath();
                 ctx.arc(this.x + (this.side / 2), this.y + (this.side / 2), this.side / 2, 0, 2 * Math.PI, false);
                 ctx.fillStyle = '#000';
                 ctx.fill();
+                */
             }
 
 
@@ -397,10 +419,13 @@ function biblan(id) {
 
         //init();
         var loop = function() {
-            ball.update();
-            draw();
-
-            window.requestAnimationFrame(loop, canvas);
+            if(compleated == false){
+                ball.update();
+                draw();
+                window.requestAnimationFrame(loop, canvas);
+            }else{
+                finnish();
+            }
         };
         window.requestAnimationFrame(loop, canvas);
     }

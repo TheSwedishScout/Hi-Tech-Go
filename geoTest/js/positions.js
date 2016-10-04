@@ -157,8 +157,11 @@ function initMap() {
 
       styles: [{"featureType": "all","elementType": "geometry","stylers": [{"color": "#f6fb00"}]},{"featureType": "all","elementType": "labels.text","stylers": [{"visibility": "off"}]},{"featureType": "all","elementType": "labels.text.fill","stylers": [    {"gamma": 0.01    },    {"lightness": 20    }]},{"featureType": "all","elementType": "labels.text.stroke","stylers": [    {"saturation": -31    },    {"lightness": -33    },    {"weight": 2    },    {"gamma": 0.8    }]},{"featureType": "all","elementType": "labels.icon","stylers": [    {"visibility": "off"    }]},{"featureType": "landscape","elementType": "geometry","stylers": [    {"lightness": 30    },    {"saturation": 30    },    {"color": "#000000"    }]},{"featureType": "poi","elementType": "geometry","stylers": [    {"saturation": 20    }]},{"featureType": "poi","elementType": "labels.text","stylers": [    {"visibility": "off"    }]},{"featureType": "poi.park","elementType": "geometry","stylers": [    {"lightness": 20    },    {"saturation": -20    }]},{"featureType": "road","elementType": "geometry","stylers": [    {"lightness": 10    },    {"saturation": -30    }]},{"featureType": "road","elementType": "geometry.stroke","stylers": [    {"saturation": 25    },    {"lightness": 25    }]},{"featureType": "road","elementType": "labels.text","stylers": [    {"visibility": "off"    }]},{"featureType": "water","elementType": "all","stylers": [    {"lightness": -20    }]}]
     });
+    map.setTilt(45);
 
-    
+    function odt(id) {
+             debugger
+         }; 
 
     // Construct the circle for each value in citymap.
     // Note: We scale the area of the circle based on the storlek.
@@ -174,6 +177,14 @@ function initMap() {
         center: intressePungter[location].center,
         radius: Math.sqrt(intressePungter[location].storlek)
       });
+    (function() {
+      cityCircle.addListener('click', function() {
+         
+         odt(location);
+      });
+      
+      }
+    )
     }
     myLocation();
     //document.addEventListener("DOMContentLoaded", myLocation);
