@@ -1,0 +1,49 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+body {
+	background-color: beige;
+	height: 100%;
+}
+
+#logos {
+	float: left;
+	width: 50%;
+	height: 100vh-30px;
+}
+
+#logos div {
+	height: 30vh;
+	
+}
+
+#bottles {
+	float: right;
+	width: 50%;
+	height: 100vh-30px;
+}
+
+#bottles div {
+	height: 30vh;
+	
+}
+
+.group:after {
+	clear: both;
+}
+
+.logo {
+	height: 100px;
+    padding: 50px;
+}
+
+.bottle {
+	height: 100px;
+    padding: 50px;
+
+}
+
+

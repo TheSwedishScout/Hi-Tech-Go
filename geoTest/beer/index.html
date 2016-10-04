@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HiTechGo | Beer</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="stylesheet" type="text/css" href="beer.css">
+	<script type="text/javascript" src="js/beer.js" ></script>
+	<!-- Code from: https://github.com/timruffles/ios-html5-drag-drop-shim -->
+	<script type="text/javascript" src="js/ios-drag-drop.js"></script>
+</head>
+<body>
+	<section>
+	<h1>Match the Bottle</h1>
+	<p>Drag the logo to the matching bottle</p>
+	</section>
+
+	<section class="group">
+		<div id="logos">
+			<div>
+				<img id="l_budweiser" data-id="match1" class="logo" src="images/budweiser logo.png" alt="Budweiser Logo" draggable="true" ondragstart="drag(event)"></img>
+			</div>
+			<div>
+				<img id="l_heineken" data-id="match2" class="logo" src="images/heineken logo.png" alt="Heineken Logo" draggable="true" ondragstart="drag(event)"></img>
+			</div>
+			<div>
+				<img id="l_staropramen" data-id="match3" class="logo" src="images/staropramen logo.png" alt="Staropramen Logo" draggable="true" ondragstart="drag(event)"></img>
+			</div>
+		</div>
+
+		<div id="bottles">
+			<div>
+				<img id="b_staropramen" data-id="match3" class="bottle" src="images/staropramen bottle.png" alt="Staropramen Bottle" ondrop="drop(event)" ondragover="allowDrop(event)"></img>
+			</div>
+			<div>
+				<img id="b_heineken" data-id="match2" class="bottle" src="images/heineken bottle.png" alt="Heineken Bottle" ondrop="drop(event)" ondragover="allowDrop(event)"></img>
+			</div>
+			<div>
+				<img id="b_budweiser" data-id="match1" class="bottle" src="images/budweiser bottle.png" alt="Budweiser Bottle" ondrop="drop(event)" ondragover="allowDrop(event)"></img>
+			</div>
+
+		</div>
+	</section>
+
+</body>
+</html>
